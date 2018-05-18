@@ -26,6 +26,7 @@ namespace _2dPuzzleGenerator
                 _lyr = new cLayer();
 
                 CreateValidationLists();
+                
 
             }
             catch (Exception x)

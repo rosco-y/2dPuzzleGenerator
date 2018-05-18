@@ -9,7 +9,7 @@ namespace _2dPuzzleGenerator.sudoLib
     public class cValidatation
     {
         cLayer _layer;
-
+        List<cSquare> _squareList;
         #region CONSTRUCTION / DESTRUCTION
         public cValidatation(cLayer layer)
         {
@@ -25,35 +25,42 @@ namespace _2dPuzzleGenerator.sudoLib
             {
                 for (int col = 0; col < g.PSIZE; col++)
                 {
-                    _layer[row][col].ValidationList.AddRange(buildRegionLinks(row, col));
-                    _layer[row][col].ValidationList.AddRange(buildRowLinks(row));
-                    _layer[row][col].ValidationList.AddRange(buildColumnLinks(col));
+                    _squareList = _layer[row][col].ValidationList;
+                    buildRegionLinks(row, col);
+                    buildRowLinks(row);
+                    buildColumnLinks(col);
                 }
             }
         }
 
+        void AddLink(int row, int col)
+        {
+            cSquare sqr = _layer[row][col];
+            if (!_squareList.Contains(sqr))
+            {
+                _squareList.Add(sqr);
+            }
+        }
 
         #region REGION, ROW, COLUMN
 
-        List<cSquare> BuildRegionList(int row, int col)
+        void BuildRegionList(int row, int col)
         {
-            List<cSquare> retList = new List<cSquare>();
-
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    retList.Add(_layer[row + i][col + j]);
+
+                    AddLink(row + i, col + j);
                 }
             }
-            return retList;
         }
 
-        List<cSquare> buildRegionLinks(int row, int col)
+        void buildRegionLinks(int row, int col)
         {
 
             eRegion thisRegion = GetRegion(row, col);
-            List<cSquare> retList = new List<cSquare>();
+
             int iRow = -1;
             int iCol = -1;
             switch (thisRegion)
@@ -88,8 +95,8 @@ namespace _2dPuzzleGenerator.sudoLib
                 default:
                     throw new Exception("Invalid eRegion in cValidation.buildRegionLinks()");
             }
-            retList.AddRange(BuildRegionList(iRow, iCol));
-            return retList;
+            BuildRegionList(iRow, iCol);
+
         }
 
         /// <summary>
@@ -104,24 +111,19 @@ namespace _2dPuzzleGenerator.sudoLib
         /// thereby building one continuing list that can be traversed simply by 
         /// traversing each element of the ValidationList of a cSquare.
         /// </returns>
-        List<cSquare> buildRowLinks(int row)
+        void buildRowLinks(int row)
         {
-            List<cSquare> retList = new List<cSquare>();
-
             for (int col = 0; col < g.PSIZE; col++)
-                retList.Add(_layer[row][col]);
-
-            return retList;
+                AddLink(row, col);
         }
-       
-        List<cSquare> buildColumnLinks(int col)
+
+        void buildColumnLinks(int col)
         {
             List<cSquare> retList = new List<cSquare>();
 
             for (int row = 0; row < g.PSIZE; row++)
-                retList.Add(_layer[row][col]);
+                AddLink(row, col);
 
-            return retList;
         }
 
         #endregion REGION, ROW, COLUMN
@@ -131,9 +133,9 @@ namespace _2dPuzzleGenerator.sudoLib
         #region TEST VALIDITY OF LINKS
         public void CheckLinks()
         {
-            for(int row = 0; row < g.PSIZE; row++)
+            for (int row = 0; row < g.PSIZE; row++)
             {
-                for (int col =0; col < g.PSIZE; col++)
+                for (int col = 0; col < g.PSIZE; col++)
                 {
                     ClearValues();
                     traverseLinks(row, col);
@@ -156,8 +158,7 @@ namespace _2dPuzzleGenerator.sudoLib
             int sqrNum = 0;
             foreach (cSquare sqr in list)
             {
-                if (sqr.Value == 0)
-                    sqr.Value = ++sqrNum;
+                sqr.Value = ++sqrNum;
             }
         }
 
