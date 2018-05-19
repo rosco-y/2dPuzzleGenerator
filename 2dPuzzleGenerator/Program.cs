@@ -13,20 +13,25 @@ namespace _2dPuzzleGenerator
 
         static void Main(string[] args)
         {
-            BuildPuzzle();
+            BuildPuzzle(1);
         }
 
         
 
-        static void BuildPuzzle()
+        static void BuildPuzzle(int seed)
         {
             try
             {
-                g.Seed = 1;
+                g.Seed = seed;
+
                 _lyr = new cLayer();
 
-                CreateValidationLists();
-                
+                createValidationLists();
+                populatePuzzleValues();
+                Console.WriteLine(g.Banner("Puzzle with Values"));
+                Console.WriteLine(_lyr.LayerString());
+                Console.WriteLine(g.Banner("Done."));
+                Console.ReadLine();
 
             }
             catch (Exception x)
@@ -34,13 +39,15 @@ namespace _2dPuzzleGenerator
                 Console.WriteLine(x.Message);
             }
         }
+        
+        
 
-        static void CreateValidationLists()
+        static void createValidationLists()
         {
             try
             {
                 cValidatation validate = new cValidatation(_lyr);
-                validate.CheckLinks();
+                //validate.CheckLinks();
             }
             catch (Exception x)
             {
@@ -50,6 +57,10 @@ namespace _2dPuzzleGenerator
             }
         }
 
+        static void populatePuzzleValues()
+        {
+            cPopulateSquares populate = new cPopulateSquares(_lyr);
+        }
     }
 
 }

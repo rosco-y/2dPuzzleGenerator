@@ -9,7 +9,7 @@ namespace _2dPuzzleGenerator.sudoLib
     public class cSquare
     {
         int _value;
-        bool[] _available;
+        cNextGenerator _nextGenerator;
         List<cSquare> _validationList;
 
         public cSquare()
@@ -27,27 +27,17 @@ namespace _2dPuzzleGenerator.sudoLib
             set { _value = value; }
             get { return _value; }
         }
-
-        public bool SetValue()
-        {
-            bool success = true;
-            int availableCount = 0;
-            for (int i = 1; i < g.PSIZE + 1; i++)
-            {
-                availableCount++;
-            }
-            if (availableCount > 0)
-            {
-                
-            }
-
-            return success;
-        }
         
         public List<cSquare> ValidationList
         {
             get { return _validationList; }
             set { _validationList = value; }
+        }
+
+        public bool[] Available
+        {
+            get { return _available; }
+            set { _available = value; }
         }
 
     }

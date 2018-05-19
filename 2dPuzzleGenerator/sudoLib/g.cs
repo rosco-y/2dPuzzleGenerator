@@ -60,5 +60,14 @@ namespace _2dPuzzleGenerator.sudoLib
             }
         }
 
+        public static string Banner(string msg)
+        {
+            string retString = string.Empty;
+            retString = new string('=', 5);
+            retString += " " + msg + " ";
+            retString += new string('=', 5) + Environment.NewLine;
+            return retString;
+        }
+
     }
 }
