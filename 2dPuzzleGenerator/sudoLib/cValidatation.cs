@@ -158,6 +158,11 @@ namespace _2dPuzzleGenerator.sudoLib
             int sqrNum = 0;
             foreach (cSquare sqr in list)
             {
+                /// setting the sqr value with not testing to see if it's
+                /// already been set ensures that each member of the list
+                /// is only visited once. (just check to see that all the
+                /// values are sequential, and that the maximum value is
+                /// the length of the list.
                 sqr.Value = ++sqrNum;
             }
         }
