@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2dPuzzleGenerator", "2dPuzzleGenerator\2dPuzzleGenerator.csproj", "{3D54051F-7951-4234-8217-D03A5CEB085B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPuzzle", "TestPuzzle\TestPuzzle.csproj", "{BE0CF87F-4C13-46C6-B44C-72AC6E8B8145}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{3D54051F-7951-4234-8217-D03A5CEB085B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D54051F-7951-4234-8217-D03A5CEB085B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D54051F-7951-4234-8217-D03A5CEB085B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE0CF87F-4C13-46C6-B44C-72AC6E8B8145}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE0CF87F-4C13-46C6-B44C-72AC6E8B8145}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE0CF87F-4C13-46C6-B44C-72AC6E8B8145}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE0CF87F-4C13-46C6-B44C-72AC6E8B8145}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
