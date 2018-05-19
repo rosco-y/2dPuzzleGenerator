@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="_2dPuzzleGenerator.sudoLib.cLayer">
+    <Position X="1.75" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAECACAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>sudoLib\cLayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2dPuzzleGenerator.sudoLib.cRow">
+    <Position X="6.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAACAAAAAAAAAAAAAAABgBAAAAAAEA=</HashCode>
+      <FileName>sudoLib\cRow.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="_2dPuzzleGenerator.sudoLib.cSquare" Collapsed="true">
+    <Position X="6.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAABAABAAAAAAAAAAAAAAAAgAAAAAQA=</HashCode>
+      <FileName>sudoLib\cSquare.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

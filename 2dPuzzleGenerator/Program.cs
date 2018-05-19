@@ -16,7 +16,7 @@ namespace _2dPuzzleGenerator
             BuildPuzzle();
         }
 
-        
+
 
         static void BuildPuzzle()
         {
@@ -26,6 +26,10 @@ namespace _2dPuzzleGenerator
                 _lyr = new cLayer();
 
                 CreateValidationLists();
+
+                cCheckPuzzle chk = new cCheckPuzzle(_lyr);
+                chk.CheckAccessOrder();
+                chk.CenterRegionCheck();
                 
 
             }
@@ -40,15 +44,17 @@ namespace _2dPuzzleGenerator
             try
             {
                 cValidatation validate = new cValidatation(_lyr);
-                validate.CheckLinks();
+                //validate.CheckLinks();
             }
             catch (Exception x)
             {
 
                 Console.WriteLine(x.Message);
-                Console.ReadKey();
+                g.Pause();
             }
         }
+
+       
 
     }
 

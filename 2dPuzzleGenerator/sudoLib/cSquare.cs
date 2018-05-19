@@ -28,21 +28,6 @@ namespace _2dPuzzleGenerator.sudoLib
             get { return _value; }
         }
 
-        public bool SetValue()
-        {
-            bool success = true;
-            int availableCount = 0;
-            for (int i = 1; i < g.PSIZE + 1; i++)
-            {
-                availableCount++;
-            }
-            if (availableCount > 0)
-            {
-                
-            }
-
-            return success;
-        }
         
         public List<cSquare> ValidationList
         {

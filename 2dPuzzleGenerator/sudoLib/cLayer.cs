@@ -22,10 +22,6 @@ namespace _2dPuzzleGenerator.sudoLib
             get { return _rows; }
         }
 
-        public void SetValue(int iRow, int iCol, int iValue)
-        {
-            _rows[iCol].Squares[iCol].Value = iValue;
-        }
 
         public string LayerString()
         {

@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sudoLib\cCheckPuzzle.cs" />
     <Compile Include="sudoLib\cLayer.cs" />
     <Compile Include="sudoLib\cRow.cs" />
     <Compile Include="sudoLib\cSquare.cs" />
@@ -52,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
