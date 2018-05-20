@@ -6,18 +6,22 @@ using System.Threading.Tasks;
 
 namespace _2dPuzzleGenerator.sudoLib
 {
-    /// <summary>
-    /// cCheckPuzzle is a class for testing assumptions, and generally generally
-    /// trying things out to satisfy curiosity without actually stomping around
-    /// in the actual project.
-    /// </summary>
+    ///////////////////////////////////////////////////////////////////////////////
+    /// <summary>                                                                //
+    /// cCheckPuzzle is a class for testing assumptions, and generally generally //
+    /// trying things out to satisfy curiosity without actually stomping around  //
+    /// in the actual project.                                                   //
+    /// </summary>                                                               //
+    ///////////////////////////////////////////////////////////////////////////////
     public class cCheckPuzzle
     {
-        cLayer _lyr;
 
+        cLayer _lyr;
+        bool _success;
         public cCheckPuzzle(cLayer layer)
         {
             _lyr = layer;
+            _success = false; // unless valid puzzle is generated.
         }
 
         ///////////////////////////////////////////////////////////////////
@@ -52,6 +56,42 @@ namespace _2dPuzzleGenerator.sudoLib
                 Console.Write(Environment.NewLine);
             }
             g.Pause();
+        }
+
+        public void CheckDecrementCurPostionObject()
+        {
+            cCurPosition pos = new cCurPosition(8,8);
+            int i, j;
+
+            Console.WriteLine($"{pos.Row}, {pos.Col}");
+
+            while (!pos.StartPosition)
+            {
+                pos--;
+                Console.WriteLine($"{pos.Row}, {pos.Col}");
+            }
+            g.Banner($"Success! pos is now at {pos.Row}, {pos.Col}");
+        }
+
+        public void CheckIncrementCurPostionObject()
+        {
+            cCurPosition pos = new cCurPosition();
+            int i, j;
+
+            Console.WriteLine($"{pos.Row}, {pos.Col}");
+
+            while (!pos.EndPosition)
+            {
+                pos++;
+                Console.WriteLine($"{pos.Row}, {pos.Col}");
+            }
+            g.Banner($"Success! pos is now at {pos.Row}, {pos.Col}");
+        }
+
+
+        public bool Success
+        {
+            get { return _success; }
         }
     }
 }

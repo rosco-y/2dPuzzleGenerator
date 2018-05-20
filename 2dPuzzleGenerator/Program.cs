@@ -10,9 +10,10 @@ namespace _2dPuzzleGenerator
     class Program
     {
         static cLayer _lyr;
-
+        
         static void Main(string[] args)
         {
+            
             BuildPuzzle();
         }
 
@@ -28,8 +29,12 @@ namespace _2dPuzzleGenerator
                 CreateValidationLists();
 
                 cCheckPuzzle chk = new cCheckPuzzle(_lyr);
-                chk.CheckAccessOrder();
-                chk.CenterRegionCheck();
+                chk.CheckIncrementCurPostionObject();
+                g.Pause();
+                chk.CheckDecrementCurPostionObject();
+                g.Pause();
+                //chk.CheckAccessOrder();
+                //chk.CenterRegionCheck();
                 
 
             }
