@@ -11,7 +11,6 @@ namespace _2dPuzzleGenerator.sudoLib
         int _curRow;
         int _curCol;
         bool _success = false;
-        bool _startPostion = false;
         public cCurPosition()
         {
             _curRow = _curCol = 0;
