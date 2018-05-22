@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace _2dPuzzleGenerator.sudoLib
 {
+    ///
+    /// UTILITY CLASS FOR ASSISTING THE BUILDING OF THE SUDDOKU PUZZLE SOFTWARE.
+    /// 
+    
+
     ///////////////////////////////////////////////////////////////////////////////
-    /// <summary>                                                                //
+    /// <summary>         
     /// cCheckPuzzle is a class for testing assumptions, and generally generally //
     /// trying things out to satisfy curiosity without actually stomping around  //
     /// in the actual project.                                                   //

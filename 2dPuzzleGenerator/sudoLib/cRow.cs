@@ -9,17 +9,22 @@ namespace _2dPuzzleGenerator.sudoLib
     public class cRow
     {
         // each row consists of an array of cSquare objects.
+        int _rowID;
         cSquare[] _squares;
         const string _smallSpace = "  ";
         const string _largeSpace = "     ";
 
-        public cRow()
+        public cRow(int row)
         {
+            _rowID = row + 1; // rowIDs are passed in zero-based, but are stored 1-9.
             _squares = new cSquare[g.PSIZE];
 
             for (int i = 0; i < g.PSIZE; i++)
             {
-                _squares[i] = new cSquare();
+                /// square IDs are one-based.
+                /// Column IDs are passed on zero-based, and adjusted in the
+                /// cSquare constructor.
+                _squares[i] = new cSquare(_rowID, i);
             }            
         }
 
@@ -39,6 +44,22 @@ namespace _2dPuzzleGenerator.sudoLib
         {
             get { return _squares; }
             set { _squares = value; }
+        }
+
+        public override string ToString()
+        {
+            string retString = string.Empty;
+
+            for (int i = 0; i < g.PSIZE; i++)
+            {
+                retString += _squares[i];
+                if ((i + 1) % 3 == 0)
+                    retString += _largeSpace;
+                else
+                    retString += _smallSpace;
+            }
+
+            return retString;
         }
 
         public String RowString()

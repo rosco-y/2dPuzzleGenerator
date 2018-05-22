@@ -8,12 +8,28 @@ namespace _2dPuzzleGenerator.sudoLib
 {
     public class cSquare
     {
+        int _rowID;
+        int _colID;
         int _value;
         bool[] _available;
         List<cSquare> _validationList;
 
-        public cSquare()
+        public cSquare(int row, int col)
         {
+            /// rowID and colID are stored 0 based, but IDs are reported
+            /// (ID + 1) * a multiplicand so they can be combined with the
+            /// square's value and be easily reprented in the following fashion:
+            /// Row * 100 + Col * 10 + Value
+            /// (rowID* 100 + colID * 10 + value.
+            /// Examples:
+            /// 111 = Row=1, Col=1, Value=1
+            /// 327 = Row=3, Col=2, Value=7
+            /// 456 = Row=4, Col=5, Value=5
+            /// 999 = Row=9, Col=9, Value=9.
+            _rowID = row; // rowID has already been adjusted in the cRow Constructor.
+
+            _colID = col + 1; // passed in zero-based.
+
             _value = 0;
             _available = new bool[g.PSIZE + 1]; // so values 1 to 9 can be used as indexes.
             _available[0] = false;
@@ -144,6 +160,35 @@ namespace _2dPuzzleGenerator.sudoLib
             return success;
 
         } // public bool TrySetValue()
+
+        public int RowID
+        {
+            get { return _rowID; }
+        }
+
+        public int ColID
+        {
+            get { return _colID; }
+        }
+
+        /// <summary>
+        /// SquareID: row and colID combined into a single ID.
+        /// (_rowID + 1) * 100 + (_colID + 1) * 100, so that when
+        /// rowID is combined with a value, as in ToString(), it
+        /// is trivial to deduce rowid, colid and value.
+        /// </summary>
+        public int SquareID
+        {
+            get { return _rowID * 100 + _colID * 10; }
+        }
+
+        public override string ToString()
+        {
+            //return (_rowID * 100 + _colID * 10 + _value).ToString();
+            return $"({_rowID}, {_colID}) [{_value}]";
+            // return $"{_value}";
+
+        }
 
     } // public class cSquare
 }

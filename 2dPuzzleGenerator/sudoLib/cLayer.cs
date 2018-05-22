@@ -15,7 +15,7 @@ namespace _2dPuzzleGenerator.sudoLib
         {
             _rows = new cRow[g.PSIZE];
             for (int i = 0; i < g.PSIZE; i++)
-                _rows[i] = new cRow();
+                _rows[i] = new cRow(i); // rowID
         }
 
         public cRow[] Rows
@@ -29,7 +29,7 @@ namespace _2dPuzzleGenerator.sudoLib
 
             for (int i = 0; i < g.PSIZE; i++)
             {
-                retStr.Append(_rows[i].RowString() + Environment.NewLine);
+                retStr.Append(_rows[i] + Environment.NewLine);
                 if ((i + 1) % 3 == 0)
                 {
                     retStr.Append(Environment.NewLine);
