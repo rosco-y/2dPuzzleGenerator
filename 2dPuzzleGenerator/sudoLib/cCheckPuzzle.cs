@@ -40,7 +40,7 @@ namespace _2dPuzzleGenerator.sudoLib
                     _lyr[i][j].Value = ++visit;
                 }
             }
-            Console.WriteLine(_lyr.LayerString());
+            Console.WriteLine(_lyr);
             g.Pause();
         }
 
@@ -76,7 +76,6 @@ namespace _2dPuzzleGenerator.sudoLib
         public void CheckIncrementCurPostionObject()
         {
             cCurPosition pos = new cCurPosition();
-            int i, j;
 
             Console.WriteLine($"{pos.Row}, {pos.Col}");
 
