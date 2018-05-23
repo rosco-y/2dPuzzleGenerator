@@ -16,7 +16,7 @@ namespace _2dPuzzleGenerator.sudoLib
 
         public cRow(int row)
         {
-            _rowID = row + 1; // rowIDs are passed in zero-based, but are stored 1-9.
+            _rowID = (row + 1) * 100; // RowIDs are 100 - 900
             _squares = new cSquare[g.PSIZE];
 
             for (int i = 0; i < g.PSIZE; i++)

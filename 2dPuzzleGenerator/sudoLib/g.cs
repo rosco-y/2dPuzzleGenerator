@@ -23,6 +23,10 @@ namespace _2dPuzzleGenerator.sudoLib
                 _rnd = null;
                 _rnd = new Random(_seed);
             }
+            get
+            {
+                return _seed;
+            }
         }
 
         /// <summary>

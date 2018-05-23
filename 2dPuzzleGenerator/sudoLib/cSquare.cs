@@ -28,7 +28,7 @@ namespace _2dPuzzleGenerator.sudoLib
             /// 999 = Row=9, Col=9, Value=9.
             _rowID = row; // rowID has already been adjusted in the cRow Constructor.
 
-            _colID = col + 1; // passed in zero-based.
+            _colID = (col + 1) * 10; // Column IDs are 10 - 90.
 
             _value = 0;
             _available = new bool[g.PSIZE + 1]; // so values 1 to 9 can be used as indexes.
@@ -173,21 +173,17 @@ namespace _2dPuzzleGenerator.sudoLib
 
         /// <summary>
         /// SquareID: row and colID combined into a single ID.
-        /// (_rowID + 1) * 100 + (_colID + 1) * 100, so that when
-        /// rowID is combined with a value, as in ToString(), it
-        /// is trivial to deduce rowid, colid and value.
+        /// ex: 230 = Row 2 (rowID/100), Col 3 (colID/10)
         /// </summary>
         public int SquareID
         {
-            get { return _rowID * 100 + _colID * 10; }
+            get { return _rowID + _colID; }
         }
 
         public override string ToString()
         {
-            //return (_rowID * 100 + _colID * 10 + _value).ToString();
-            return $"({_rowID}, {_colID}) [{_value}]";
-            // return $"{_value}";
-
+            return $"({_rowID/100}, {_colID/10}) {_value}"; // rowID + colID + value as string
+            // return $"{_value}"; // value as a string.
         }
 
     } // public class cSquare
