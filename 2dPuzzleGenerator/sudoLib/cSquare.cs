@@ -182,8 +182,8 @@ namespace _2dPuzzleGenerator.sudoLib
 
         public override string ToString()
         {
-            return $"({_rowID/100}, {_colID/10}) {_value}"; // rowID + colID + value as string
-            // return $"{_value}"; // value as a string.
+            // return $"({_rowID/100}, {_colID/10}) {_value}"; // rowID + colID + value as string
+            return $"{_value}"; // value as a string.
         }
 
     } // public class cSquare
