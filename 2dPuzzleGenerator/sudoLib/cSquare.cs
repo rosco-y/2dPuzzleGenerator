@@ -89,11 +89,42 @@ namespace _2dPuzzleGenerator.sudoLib
             bool success = false;
             int tryValue = -1;
             bool doneTrying = false;
+
             while (!doneTrying)
             {
-                tryValue = g.Next;
-                if (_available[tryValue]) // _avialable is initialized [1] - [9] = true, (not [0] - [8]).
+                int availableCount = AvailableCount();
+
+                if (availableCount >= 2)   // 2 or more.
                 {
+                    bool foundAvailableValue = false;
+                    while (!foundAvailableValue)
+                    {
+                        tryValue = g.Next;
+                        foundAvailableValue = _available[tryValue];
+                    }
+                }
+                else // if 1 more value available
+                {
+                    if (availableCount > 0)
+                    {
+                        for (int i = 1; i < g.PSIZE; i++)
+                            if (_available[i])
+                            {
+                                tryValue = i;
+                                break;
+                            }
+                    }
+                    else
+                    {
+                        tryValue = -1;
+                        doneTrying = true;
+                        success = false;
+                    }
+
+                }
+                if (tryValue > 0) // value was found, and now needs to be validated using the rules of Sudoku.
+                { 
+
                     //////////////////////////////////////////////////////////////////////////////////////
                     /// Fine, the value is available, but now we need to check it's region, up/down and //
                     /// across neighbors to ensure that it doesn't violate the rules of sudoku.         //
@@ -127,40 +158,8 @@ namespace _2dPuzzleGenerator.sudoLib
                         doneTrying = success = true;
                     }
 
-                } // else tried value wasn't available
-                else
-                {
-                    // value tried wasn't available.
-                    switch (AvailableCount())
-                    {
-                        case 0:
-                            /// No more values available to try on this square, reset available and return false.
-                            _available[0] = false;
-                            for (int i = 1; i < g.PSIZE + 1; i++)
-                                _available[i] = true;
-                            success = false;
-                            doneTrying = true;
-                            break;
-                        case 1:
-                            // find last remaining value and use it.
-                            for (int i = 1; i <= g.PSIZE; i++)
-                                if (_available[i])
-                                {
-                                    tryValue = i;
-                                    break;
-                                }
-                            break;
-                        default:
-                            bool foundAvailable = false;
 
-                            while (!foundAvailable)
-                            {
-                                tryValue = g.Next;
-                                foundAvailable = _available[tryValue];
-                            }
-                            break;
-                    }
-                }
+                } // tryValue > 0, tryValue was set, and needed to be validated.
 
             } // while (!doneTrying)
             return success;

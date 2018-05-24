@@ -19,6 +19,7 @@ namespace _2dPuzzleGenerator.sudoLib
         #endregion CONSTRUCTION / DESTRUCTION
 
         #region CONSTRUCT LINKS
+
         void buildLinks()
         {
             for (int row = 0; row < g.PSIZE; row++)
@@ -130,6 +131,7 @@ namespace _2dPuzzleGenerator.sudoLib
 
         #endregion CONSTRUCT LINKS
 
+
         #region TEST VALIDITY OF LINKS
         public void CheckLinks()
         {
@@ -156,6 +158,7 @@ namespace _2dPuzzleGenerator.sudoLib
         {
             List<cSquare> list = _layer[row][col].ValidationList;
             int sqrNum = 0;
+            int total = 0;
             foreach (cSquare sqr in list)
             {
                 /// setting the sqr value with not testing to see if it's
@@ -164,12 +167,16 @@ namespace _2dPuzzleGenerator.sudoLib
                 /// values are sequential, and that the maximum value is
                 /// the length of the list.
                 sqr.Value = ++sqrNum;
+                total += sqr.Value;
             }
+
+            g.Banner($"Sum of Values is {total}.");
         }
 
         #endregion VALIDITY OF LINKS
 
         #region REGIONS
+
         eTopBottom _topBottom;
         eLeftRight _leftRight;
 

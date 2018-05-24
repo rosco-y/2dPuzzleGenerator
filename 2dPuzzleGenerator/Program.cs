@@ -42,9 +42,6 @@ namespace _2dPuzzleGenerator
                 _lyr = new cLayer();
                 CreateValidationLists();
                 cPuzzleBuilder bldr = new cPuzzleBuilder(_lyr, 1);
-                string filename = $"Puzzle{seed}.txt";
-
-                //File.WriteAllText(filename, _lyr);
                 Console.WriteLine(_lyr);
                 g.Pause();
 
@@ -60,7 +57,7 @@ namespace _2dPuzzleGenerator
             try
             {
                 cValidatation validate = new cValidatation(_lyr);
-                //validate.CheckLinks();
+                validate.CheckLinks();
             }
             catch (Exception x)
             {
