@@ -151,7 +151,13 @@ namespace _2dPuzzleGenerator.sudoLib
                                 }
                             break;
                         default:
-                            tryValue = g.Next;
+                            bool foundAvailable = false;
+
+                            while (!foundAvailable)
+                            {
+                                tryValue = g.Next;
+                                foundAvailable = _available[tryValue];
+                            }
                             break;
                     }
                 }

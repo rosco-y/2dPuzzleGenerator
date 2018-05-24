@@ -4,8 +4,9 @@ Puzzle1.txt:
 8  7  9     5  3  2     4  1  6     
 2  4  6     1  8  9     3  7  5     
 
+TOGGLE BREAKPOINT WHEN ON (3,8) "4"
 7  2  1     9  5  8     6  3  4     
-9  6  8     3  4  7     1  2  0     
+[[[9]]]6 8  3  4  7     1  2  0     
 0  0  0     0  0  0     0  0  0     
 
 0  0  0     0  0  0     0  0  0     
@@ -14,4 +15,123 @@ Puzzle1.txt:
 
 TODO:
 Override ToString() on the cRow object.
+
+$a2*$a$12
+B$1*$K$1
+/*****************************************************************************
+Make a new branch, "CleanupTrySetValue, in which the
+initial setting of the tryValue after loop opening statement:
+/*****************************************************************************/
+while(!doneTrying)
+{
+/*****************************************************************************
+		which currently reads:
+/*****************************************************************************		
+			tryValue = g.Next;
+			if (_available[tryValue]) // _avialable is initialized [1] - [9] = true, (not [0] - [8]).
+			{
+				//////////////////////////////////////////////////////////////////////////////////////
+				/// Fine, the value is available, but now we need to check it's region, up/down and //
+				/// across neighbors to ensure that it doesn't violate the rules of sudoku.         //
+				//////////////////////////////////////////////////////////////////////////////////////
+				bool inviolates = false;
+				foreach (cSquare tstSqr in _validationList)
+				{
+					if (tstSqr.Value == tryValue)
+					{
+						_available[tryValue] = false; // it violates sudoku rules, after all...
+						inviolates = true;
+						break;
+					}
+				}
+				if (inviolates)
+				{
+					doneTrying = success = false;
+				}
+				else
+				{
+					/// Actaully, since we are no longer looking for a value for this square, it seems as
+					/// though it might not be important to set the _available[usedValue] = false, but it
+					/// feels somehow "safer".
+					_available[tryValue] = false;
+
+
+					/////////////////////////////////////////////////////////////
+					/// DON'T FORGET TO SET THE VALUE--THAT'S WHY WE'RE HERE!!///
+					/////////////////////////////////////////////////////////////
+					_value = tryValue;
+					doneTrying = success = true;
+				}
+
+			} // else tried value wasn't available
+			else
+			{
+/*****************************************************************************
+and uses the following switch statement to clean up the mess when the initial
+tryValue wasn't available.
+
+This can all be cleaned up significantly by changing the above while(!doneTrying) loop
+opening statement to read more like this:
+
+while(!doneTrying)
+{
+	bool foundAvailable = false;
+	if (AvailableCount() > 1)
+	{
+		while (!foundAvailable) 
+		{
+			tryValue = g.Next;	
+			foundAvailable = _available[tryValue];
+		}
+	}
+	else
+		for (int i = 1; i < g.PSIZE; i++)
+			if (_available[i])
+			{
+				tryValue = i;
+				break;
+			}
+			
+/*****************************************************************************
+this way, the whole if(_available[tryValue]) /else logic can be simplified, because
+we don't fall into the need-to-validate logic unless we know we have an available
+value.
+/*****************************************************************************
+				// value tried wasn't available.
+				switch (AvailableCount())
+				{
+					case 0:
+						/// No more values available to try on this square, reset available and return false.
+						_available[0] = false;
+						for (int i = 1; i < g.PSIZE + 1; i++)
+							_available[i] = true;
+						success = false;
+						doneTrying = true;
+						break;
+					case 1:
+						// find last remaining value and use it.
+						for (int i = 1; i <= g.PSIZE; i++)
+							if (_available[i])
+							{
+								tryValue = i;
+								break;
+							}
+						break;
+					default:
+						bool foundAvailable = false;
+
+						while (!foundAvailable)
+						{
+							tryValue = g.Next;
+							foundAvailable = _available[tryValue];
+						}
+						break;
+				}
+			}
+
+		} // while (!doneTrying)
+		return success;
+
+	} // public bool TrySetValue()
+				
 
